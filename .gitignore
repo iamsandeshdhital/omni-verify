@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Never commit verdict outputs derived from real user content
+outputs/*.json
+outputs/*.vtt
+outputs/*.png
+!outputs/.gitkeep
+
+# OneDrive sync churn can corrupt .git internals on large repos
+.git/OneDrive/
+
+# Secrets
+*.pem
+*.key
+credentials.json

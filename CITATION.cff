@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "omni-verify: Enforcement-Capability Projection for Multi-Platform Content Integrity Scoring"
+abstract: >-
+  A multi-platform content integrity engine. Computes a Compromised Content
+  Ratio (CCR) over merged spans of flagged content, assigns a tiered
+  enforcement level against an explicit 20 percent threshold, and projects
+  the resulting verdict onto each platform's actual enforcement capability,
+  declaring explicitly which requested actions a platform cannot perform.
+type: software
+license: MIT
+version: 0.1.0
+date-released: "2026-10-18"
+keywords:
+  - misinformation detection
+  - content integrity
+  - fact-checking
+  - content moderation
+  - computational propaganda

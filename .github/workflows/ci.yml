@@ -1,0 +1,65 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Test
+        run: python -m pytest -q
+
+      - name: Lint
+        run: |
+          ruff check src tests
+          ruff format --check src tests
+
+  selfcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Registry must expose all 14 platforms
+        run: |
+          pip install -e .
+          python -c "
+          from omni_verify.platforms import capability_matrix
+          rows = capability_matrix()
+          assert len(rows) == 14, rows
+          print('platforms:', len(rows))
+          "
+
+      - name: Score must still trip the 20% boundary
+        run: |
+          python -m omni_verify.cli score examples/sample_post.txt examples/sample_flags.json \
+            --stream-id STRM_CI --platform X --timestamp "2026-10-18T00:00:00Z" \
+            | python -c "
+          import sys, json
+          raw = sys.stdin.read()
+          d = json.loads(raw[raw.index('{'):])
+          assert d['penalization_enforcement']['tier'] == 'TIER_3_HEAVY_PENALTY', d
+          print('CCR', d['stream_metadata']['compromised_content_ratio_percent'])
+          "

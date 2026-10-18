@@ -1,0 +1,48 @@
+[
+  {
+    "start": 322, "end": 473, "category": "ECONOMICS_FINANCE", "severity": "HIGH",
+    "verdict": "FALSE",
+    "statement_made": "Inflation is running at 40 percent here and the trend is still up.",
+    "original_claim": "Inflation is running at 40 percent and still rising.",
+    "verified_fact": "Headline annual CPI inflation was 4.0 percent in the reference period.",
+    "explanation": "Decimal transposition: 40% against the official 4.0% figure, plus an unsupported claim about the trend.",
+    "confidence": 0.93, "retrieval_performed": true,
+    "counter_evidence": [
+      {
+        "source_name": "National statistical office, monthly CPI release",
+        "source_tier": "T1",
+        "evidence_summary": "Headline CPI rose 4.0 percent year over year.",
+        "reference_url_or_doi": "https://example.org/statistics/cpi/latest",
+        "published_date": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "start": 726, "end": 849, "category": "POLITICS_GOVT", "severity": "MODERATE",
+    "verdict": "MISLEADING",
+    "statement_made": "The bill went through unanimously, there was no opposition at all.",
+    "original_claim": "The bill passed unanimously with no opposition.",
+    "verified_fact": "It passed on a recorded division with three abstentions recorded.",
+    "explanation": "Abstentions were described as unanimity, which changes the reader's sense of the level of support.",
+    "confidence": 0.88, "retrieval_performed": true,
+    "counter_evidence": [
+      {
+        "source_name": "Parliamentary division record",
+        "source_tier": "T1",
+        "evidence_summary": "Division recorded 287 for, 0 against, 3 abstentions.",
+        "reference_url_or_doi": "https://example.org/parliament/division/2026-114",
+        "published_date": "2026-06-12"
+      }
+    ]
+  },
+  {
+    "start": 1168, "end": 1255, "category": "HISTORY_CULTURE", "severity": "MINOR",
+    "verdict": "UNVERIFIED",
+    "statement_made": "They had a working analogue computer by 1948.",
+    "original_claim": "A working analogue computer existed by 1948.",
+    "verified_fact": "",
+    "explanation": "Depends on the definition of 'analogue computer'. Retrieved sources do not settle it, so no definitive verdict is issued.",
+    "confidence": 0.42, "retrieval_performed": true,
+    "counter_evidence": []
+  }
+]
